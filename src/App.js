@@ -1,15 +1,12 @@
 import React from 'react';
-import ImgCard from "./components/ImgCard/ImgCard";
-// import logo from './logo.svg';
+import GamePlayContainer from './components/GamePlayContainer/GamePlayContainer';
 import './App.css';
+
 
 function App() {
   return (
     <div>
-      <ImgCard />
-      <ImgCard />
-      <ImgCard />
-      <ImgCard />
+      <GamePlayContainer />
     </div>
   )
   
