@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import ImgCard from "../ImgCard/ImgCard";
-import NavBar from "../NavBar/NavBar";
-import imageDetails from "../../utilities/imageDetails.js"
+import imageDetails from "../ImgCard/imageDetails";
+// import NavBar from "../NavBar/NavBar";
+// import imageDetails from "../../utilities/imageDetails.js"
 
 class GamePlayContainer extends Component {
     state = {   
@@ -15,9 +16,8 @@ class GamePlayContainer extends Component {
 
     loadImages = imageDetails => {
 
-        let keys = Object.keys(imageDetails)
-        let allImages = keys.map((x) => imageDetails[x])
-        return allImages;
+
+        return imageDetails
 
     }
 
@@ -31,8 +31,15 @@ class GamePlayContainer extends Component {
     render() {
         return (
             <div>
-                <NavBar value={this.state}/>
-                <ImgCard src={this.imageDetails[0].image} alt={this.imageDetails[0].alt}/>
+                <div>
+                    {imageDetails.allImages.map(({ image, altText, id }) => (
+                        <ImgCard 
+                            key={id}
+                            src={image} 
+                            alt={altText}/>
+                    ))}
+                    
+                </div>
             </div>
         )
     }
