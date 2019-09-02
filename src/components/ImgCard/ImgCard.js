@@ -1,10 +1,10 @@
 import React from "react";
 import "./style.css";
 
-function ImgCard() {
+function ImgCard(props) {
     return (
         <div className="card">
-            <img src="https://bit.ly/2LhC6xO" className="card-img-top" alt="#"/>
+            <img src={props.src} className="card-img-top" alt={props.altText}/>
         </div>
     )
 } 
