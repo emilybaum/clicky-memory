@@ -15,7 +15,8 @@ class GamePlayContainer extends Component {
         yourScore: 0,
         highScore: 0,
         theme: "default",
-        modalIsOpen: false
+        modalIsOpen: false,
+        response: ""
     };
 
     // -----------------------------
@@ -85,7 +86,7 @@ class GamePlayContainer extends Component {
         console.log("correct")
 
         // increment yourScore
-        this.setState({ yourScore: this.state.yourScore + 1 })
+        this.setState({ yourScore: this.state.yourScore + 1, response: "That's right!" })
 
         // push the guessed id into the state.guessed
         this.state.guessed.push(guess)
@@ -97,6 +98,7 @@ class GamePlayContainer extends Component {
 
     incorrect = () => {
         console.log("wrong");
+        this.setState({ response: "Bummer - that's wrong" });
         if (this.state.yourScore > this.state.highScore) {
             this.setState({ highScore: this.state.yourScore });
             this.openModal();
@@ -107,7 +109,7 @@ class GamePlayContainer extends Component {
 
     gameOver = () => {
         // reset the score to 0
-        this.setState({ yourScore: 0, guessed: [] })
+        this.setState({ yourScore: 0, guessed: [], response: ""  })
 
         // start a new game by loading the images again
         this.loadImages(this.state.images);
@@ -122,6 +124,7 @@ class GamePlayContainer extends Component {
                     yourScore={this.state.yourScore}
                     highScore={this.state.highScore}
                     theme={this.state.theme}
+                    response={this.state.response}
                     />
 
                 <header>
