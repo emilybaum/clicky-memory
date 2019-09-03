@@ -1,4 +1,9 @@
 .card {
     width: 300px;
     margin: 10px;
+    object-fit: cover;
 }
+
+/* img {
+    object-fit: cover;
+} */
