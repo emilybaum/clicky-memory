@@ -29,14 +29,18 @@ class GamePlayContainer extends Component {
     // check to see if the guess was correct/incorrect
     handleGuess = (guess) => {
         console.log("clicked")
-        const images = this.state.images;
-        const imageClicked = images.filter(images => images.id === guess)
+        const alreadyGuessed = this.state.guessed
+        const x = alreadyGuessed.includes(guess) 
         
-        if (!imageClicked) {
+        if (!x) {
             console.log("okay")
-            this.setState({ yourScore: + 1 });
-
-        }      
+            // this.setState({ yourScore: + 1 });
+            this.state.guessed.push(guess)
+            console.log(this.state.guessed)
+        } 
+        else {
+            console.log("wrong answer")
+        } 
 
         
         this.loadImages(this.state.images);
