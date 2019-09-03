@@ -11,7 +11,7 @@ class GamePlayContainer extends Component {
         guessed: [],
         yourScore: 0,
         highScore: 5,
-        theme: ""
+        theme: "default"
     };
 
     componentDidMount() {
@@ -19,24 +19,26 @@ class GamePlayContainer extends Component {
     }
 
 
+    // randomize the images array
     loadImages = images => {
-        // add in the option to change the theme?
-        // randomize the images displayed
-        console.log(images)
         let arr = images.sort(() => Math.random() - 0.5);
+        this.setState({ images: arr})
         return arr
     }
 
-
+    // check to see if the guess was correct/incorrect
     handleGuess = (guess) => {
         console.log("clicked")
         const images = this.state.images;
         const imageClicked = images.filter(images => images.id === guess)
-        console.log(imageClicked)
+        
+        if (!imageClicked) {
+            console.log("okay")
+            this.setState({ yourScore: + 1 });
 
-        console.log(guess)
+        }      
 
-        this.setState({yourScore: + 1})
+        
         this.loadImages(this.state.images);
         // what happens when an image is clicked
         // check if the id guessed is in this.state.guessed
