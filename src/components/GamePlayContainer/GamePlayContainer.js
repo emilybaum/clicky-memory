@@ -15,35 +15,16 @@ class GamePlayContainer extends Component {
     };
 
     componentDidMount() {
-        this.loadImages(imageDetails);
+        this.loadImages(this.state.images);
     }
 
 
     loadImages = images => {
         // add in the option to change the theme?
         // randomize the images displayed
-        let arr = this.shuffle(images);
-        console.log(arr)
+        console.log(images)
+        let arr = images.sort(() => Math.random() - 0.5);
         return arr
-    }
-
-    shuffle = (array) => {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
     }
 
 
@@ -56,7 +37,7 @@ class GamePlayContainer extends Component {
         console.log(guess)
 
         this.setState({yourScore: + 1})
-        this.loadImages();
+        this.loadImages(this.state.images);
         // what happens when an image is clicked
         // check if the id guessed is in this.state.guessed
         // if not, +1 for score
