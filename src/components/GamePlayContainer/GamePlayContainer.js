@@ -10,7 +10,7 @@ class GamePlayContainer extends Component {
         images: imageDetails.allImages, 
         guessed: [],
         yourScore: 0,
-        highScore: 5,
+        highScore: 0,
         theme: "default"
     };
 
@@ -28,6 +28,12 @@ class GamePlayContainer extends Component {
 
     // check to see if the guess was correct/incorrect
     handleGuess = (guess) => {
+        // what happens when an image is clicked
+        // check if the id guessed is in this.state.guessed
+        // if not, +1 for score
+        // if yes, call gameOver and call loadImages
+        // push the id for any pic guessed to this.state.guessed
+
         console.log("clicked")
         const alreadyGuessed = this.state.guessed
         const x = alreadyGuessed.includes(guess) 
@@ -39,32 +45,39 @@ class GamePlayContainer extends Component {
             this.incorrect();
         } 
 
-        
         this.loadImages(this.state.images);
-        // what happens when an image is clicked
-        // check if the id guessed is in this.state.guessed
-        // if not, +1 for score
-        // if yes, call gameOver and call loadImages
-        // push the id for any pic guessed to this.state.guessed
 
     }
 
     correct = (guess) => {
-        console.log("okay")
-        // this.setState({ yourScore: + 1 });
+        console.log("correct")
+
+        // increment yourScore
+        this.setState({ yourScore: this.state.yourScore + 1 })
+
+        // push the guessed id into the state.guessed
         this.state.guessed.push(guess)
         console.log(this.state.guessed)
+
+        // start a new game by loading the images again
+        this.loadImages(this.state.images);
     }
 
     incorrect = () => {
-        console.log("wrong answer")
+        console.log("wrong");
+        if (this.state.yourScore > this.state.highScore) {
+            this.setState({ highScore: this.state.yourScore })
+        }
+        this.gameOver()
     }
 
-   
 
-    gameOver = event => {
-        // what happens when the game is over
-        // call loadImages to start new game
+    gameOver = () => {
+        // reset the score to 0
+        this.setState({ yourScore: 0, guessed: [] })
+
+        // start a new game by loading the images again
+        this.loadImages(this.state.images);
     }
 
 
@@ -100,8 +113,6 @@ class GamePlayContainer extends Component {
             </div>
         )
     }
-
-
 }
 
 export default GamePlayContainer
