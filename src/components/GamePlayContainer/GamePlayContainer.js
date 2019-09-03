@@ -5,14 +5,45 @@ import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer"
 import Instructions from "../Instructions/Instructions";
 
+// import ReactDOM from 'react-dom';
+import Modal from 'react-modal';
+
 class GamePlayContainer extends Component {
     state = {  
         images: imageDetails.allImages, 
         guessed: [],
         yourScore: 0,
         highScore: 0,
-        theme: "default"
+        theme: "default",
+        modalIsOpen: false
     };
+
+    // -----------------------------
+    constructor() {
+        super();
+
+        // this.state = {
+        //     modalIsOpen: false
+        // };
+
+        this.openModal = this.openModal.bind(this);
+        // this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+    openModal() {
+        this.setState({ modalIsOpen: true });
+    }
+
+    // afterOpenModal() {
+    //     // references are now sync'd and can be accessed.
+    //     this.subtitle.style.color = '#f00';
+    // }
+
+    closeModal() {
+        this.setState({ modalIsOpen: false });
+    }
+    // ---------------------
 
     componentDidMount() {
         this.loadImages(this.state.images);
@@ -40,6 +71,7 @@ class GamePlayContainer extends Component {
         
         if (!x) {
             this.correct(guess);
+            // this.setState({ modalIsOpen: true })
         } 
         else {
             this.incorrect();
@@ -66,7 +98,8 @@ class GamePlayContainer extends Component {
     incorrect = () => {
         console.log("wrong");
         if (this.state.yourScore > this.state.highScore) {
-            this.setState({ highScore: this.state.yourScore })
+            this.setState({ highScore: this.state.yourScore });
+            this.openModal();
         }
         this.gameOver()
     }
@@ -79,6 +112,7 @@ class GamePlayContainer extends Component {
         // start a new game by loading the images again
         this.loadImages(this.state.images);
     }
+
 
 
     render() {
@@ -109,6 +143,31 @@ class GamePlayContainer extends Component {
                 </div>
 
                 <Footer />
+
+                <div>
+                    <button onClick={this.openModal}>Open Modal</button>
+                    <Modal
+                        isOpen={this.state.modalIsOpen}
+                        // onAfterOpen={this.afterOpenModal}
+                        onRequestClose={this.closeModal}
+                        style={{
+                            overlay: {
+                                backgroundColor: 'papayawhip'
+                            },
+                            content: {
+                                color: 'lightsteelblue'
+                            }
+                            
+                        }}
+                        contentLabel="Example Modal"
+                        // appElement={el}
+                    >
+                        <div>
+                            <h2 ref={subtitle => this.subtitle = subtitle}>Congrats! You got a new High Score!</h2>
+                            <button onClick={this.closeModal}>Click to play again</button>
+                        </div>
+                    </Modal>
+                </div>
 
             </div>
         )
