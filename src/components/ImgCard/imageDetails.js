@@ -44,7 +44,7 @@ export default {
             id: '6',
             altTxt: 'giraffe',
             // image: './images/giraffe.jpg'
-            image: 'https://akm-img-a-in.tosshub.com/indiatoday/images/story/201812/sutirta-budiman-560089-unsplash_1.jpeg?VNKMc.KwNk.Y3qlaYoIbZ21LCmjryy_o'
+            image: 'https://media.greenmatters.com/brand-img/06ZmYhDZp/0x0/masai-giraffe-extinction-1563306007202.jpg'
 
         },
         {

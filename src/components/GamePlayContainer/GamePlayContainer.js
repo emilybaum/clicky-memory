@@ -33,13 +33,10 @@ class GamePlayContainer extends Component {
         const x = alreadyGuessed.includes(guess) 
         
         if (!x) {
-            console.log("okay")
-            // this.setState({ yourScore: + 1 });
-            this.state.guessed.push(guess)
-            console.log(this.state.guessed)
+            this.correct(guess);
         } 
         else {
-            console.log("wrong answer")
+            this.incorrect();
         } 
 
         
@@ -52,8 +49,15 @@ class GamePlayContainer extends Component {
 
     }
 
-    checkCorrect = () => {
+    correct = (guess) => {
+        console.log("okay")
+        // this.setState({ yourScore: + 1 });
+        this.state.guessed.push(guess)
+        console.log(this.state.guessed)
+    }
 
+    incorrect = () => {
+        console.log("wrong answer")
     }
 
    
