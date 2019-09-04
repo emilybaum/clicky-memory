@@ -1,0 +1,15 @@
+.high-score-button {
+    width: 200px;
+    display: flex;
+}
+
+.high-score-modal {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.giphy-embed {
+
+}
+

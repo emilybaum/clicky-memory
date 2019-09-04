@@ -4,6 +4,7 @@ import imageDetails from "../ImgCard/imageDetails";
 import NavBar from "../NavBar/NavBar";
 import Footer from "../Footer/Footer"
 import Instructions from "../Instructions/Instructions";
+import "./style.css";
 
 // import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
@@ -148,26 +149,28 @@ class GamePlayContainer extends Component {
                 <Footer />
 
                 <div>
-                    <button onClick={this.openModal}>Open Modal</button>
                     <Modal
                         isOpen={this.state.modalIsOpen}
                         // onAfterOpen={this.afterOpenModal}
                         onRequestClose={this.closeModal}
                         style={{
                             overlay: {
-                                backgroundColor: 'papayawhip'
+                                backgroundColor: '#F2DFDF'
                             },
                             content: {
-                                color: 'lightsteelblue'
+                                color: 'lightsteelblue',
+                            },
+                            width: {
+                                
                             }
                             
                         }}
                         contentLabel="Example Modal"
                         // appElement={el}
                     >
-                        <div>
-                            <h2 ref={subtitle => this.subtitle = subtitle}>Congrats! You got a new High Score!</h2>
-                            <button onClick={this.closeModal}>Click to play again</button>
+                        <div className="high-score-modal">
+                            <h2 className="mt-5 text-center" ref={subtitle => this.subtitle = subtitle}>Congrats! You got a new High Score!</h2>
+                            <button className="mt-2 btn btn-dark text-center high-score-button mx-auto" type="button" onClick={this.closeModal}>Click to play again</button>
                         </div>
                     </Modal>
                 </div>

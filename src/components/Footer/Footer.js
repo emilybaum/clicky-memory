@@ -3,10 +3,10 @@ import "./style.css";
 
 function Footer() {
     return (
-        // < !--As a heading-- >
-        <div>
-            this is the footer
+        <div className="mb-3 mt-5 text-center text-muted">
+            Thank you for playing!
         </div>
+
     )
 }
 

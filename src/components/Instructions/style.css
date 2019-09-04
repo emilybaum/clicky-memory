@@ -2,10 +2,11 @@
 font-family: 'Dancing Script', cursive;
  */
 
-#highScoreModal {
-    height: 50%;
-}
 
 .eb-title-font {
     font-family: 'Dancing Script', cursive;
+}
+
+.jumbotron {
+    background: #F2DFDF;
 }
